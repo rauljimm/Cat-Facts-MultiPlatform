@@ -1,103 +1,40 @@
-Cat Facts Multiplatform
+Cat-Facts-MultiPlatform
 
-Welcome to Cat Facts Multiplatform, a cross-platform application built with .NET MAUI that brings you fascinating facts about cats and detailed information about cat breeds. Whether you're a cat enthusiast or just curious, this app lets you explore, save, and manage cat facts and breeds with a sleek, user-friendly interface.
+Cat-Facts-MultiPlatform is a mobile application developed using Kotlin Multiplatform and Jetpack Compose. It provides users with intriguing facts about cats, offering an engaging experience for feline enthusiasts.
 Features
 
-    Cat Facts: Fetch and display random cat facts from an external API.
-    Cat Breeds: Explore a list of cat breeds with details like origin, coat, and pattern.
-    Local Storage: Save your favorite facts and breeds to a local SQLite database.
-    Cross-Platform: Runs seamlessly on Android, iOS, Windows, and macOS (thanks to .NET MAUI).
-    MVVM Architecture: Built with a clean Model-View-ViewModel structure for maintainability.
-    Navigation: Easily switch between the main page, cat facts, and breed pages.
+    Cross-Platform Compatibility: Built with Kotlin Multiplatform, the app runs seamlessly on both Android and iOS devices.
 
-Screenshots
-Main Page	Cat Facts	Cat Breeds
-Main Page	Cat Facts	Breeds
-<!-- Replace with actual screenshots if you have them -->
-Getting Started
-Prerequisites
+    User-Friendly Interface: Utilizes Jetpack Compose for a modern and intuitive UI.
 
-    .NET 8 SDK
-    Visual Studio 2022 (with .NET MAUI workload installed)
-    Git (to clone the repository)
-    An emulator or physical device for testing (Android, iOS, Windows, or macOS)
+    Cat Facts: Fetches and displays a variety of interesting cat facts to educate and entertain users.
 
 Installation
 
+To set up and run the project locally:
+
     Clone the Repository:
-    bash
 
 git clone https://github.com/rauljimm/Cat-Facts-MultiPlatform.git
-cd Cat-Facts-MultiPlatform
-Restore Dependencies: Open the solution (CatFacts.sln) in Visual Studio and restore NuGet packages:
-bash
 
-    dotnet restore
-    Build and Run:
-        Set the target platform (e.g., Android emulator, iOS simulator, or Windows).
-        Press F5 to build and run the app.
+Navigate to the Project Directory:
 
-Configuration
+    cd Cat-Facts-MultiPlatform
 
-    API: The app uses the Cat Fact API and Cat Breeds API. No API key is required.
-    Database: SQLite is configured to store data locally at Environment.SpecialFolder.LocalApplicationData/catfacts.db3.
+    Open with Your IDE: It's recommended to use Android Studio for optimal support of Kotlin Multiplatform projects.
 
-Project Structure
-text
-Cat-Facts-MultiPlatform/
-├── Models/              # Data models (CatFact, Breed)
-├── Services/            # Services (API calls, database, navigation)
-├── ViewModels/          # ViewModels for MVVM pattern
-├── Views/               # UI pages (MainPage, CatFactPage, BreedPage)
-├── Resources/           # Images and other assets
-├── App.xaml             # Application entry point
-├── MauiProgram.cs       # Dependency injection setup
-└── CatFacts.sln         # Solution file
-Usage
+    Build and Run: Sync the project and execute the run configuration for your target platform (Android or iOS).
 
-    Main Page: Start here to navigate to either "Cat Facts" or "Cat Breeds".
-    Cat Facts Page: Click "Get New Cat Fact" to fetch a random fact. Use "Eliminar" to delete saved facts.
-    Cat Breeds Page: Click "Get New Breed" to add a breed to the list. Use "Eliminar" to remove breeds.
-    Navigation: Use the "Go to" buttons to switch between pages.
+Technologies Used
 
-Dependencies
+    Kotlin Multiplatform: Enables sharing code between Android and iOS platforms.
 
-    CommunityToolkit.Mvvm: For MVVM support (RelayCommand, ObservableObject).
-    sqlite-net-pcl: For local database storage.
-    Microsoft.Maui.Controls: Core .NET MAUI framework.
+    Jetpack Compose: Modern toolkit for building native UIs in Android.
 
-Install these via NuGet if needed:
-bash
-dotnet add package CommunityToolkit.Mvvm
-dotnet add package sqlite-net-pcl
-dotnet add package Microsoft.Maui.Controls
-Contributing
+    SwiftUI (iOS): Leverages SwiftUI for the iOS user interface.
 
-Contributions are welcome! To contribute:
-
-    Fork the repository.
-    Create a feature branch:
-    bash
-
-git checkout -b feature/your-feature-name
-Commit your changes:
-bash
-git commit -m "Add your feature"
-Push to your branch:
-bash
-
-    git push origin feature/your-feature-name
-    Open a Pull Request.
-
-Please ensure your code follows the existing style and includes unit tests if applicable.
-License
-
-This project is licensed under the . See the LICENSE file for details.
 Acknowledgments
 
-    Thanks to CatFact.Ninja for providing the APIs.
-    Built with ❤️ by rauljimm.
+This project is inspired by the Cat Facts API and aims to provide a delightful experience for cat lovers across platforms.
 
-Contact
-
-For questions or feedback, reach out to me at rauljimm.dev@gmail.com or open an issue on GitHub.
+Feel free to contribute to the project by submitting issues or pull requests. Your feedback and suggestions are highly appreciated!
