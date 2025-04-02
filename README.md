@@ -1,40 +1,26 @@
-Cat-Facts-MultiPlatform
+# 🐱 Cat Facts MultiPlatform
 
-Cat-Facts-MultiPlatform is a mobile application developed using Kotlin Multiplatform and Jetpack Compose. It provides users with intriguing facts about cats, offering an engaging experience for feline enthusiasts.
-Features
+![.NET MAUI](https://img.shields.io/badge/.NET%20MAUI-Framework-blueviolet)
+![C#](https://img.shields.io/badge/C%23-Language-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-    Cross-Platform Compatibility: Built with Kotlin Multiplatform, the app runs seamlessly on both Android and iOS devices.
+**Cat Facts MultiPlatform** is a cross-platform application built with **.NET MAUI** and **C#** that retrieves information about cats and their breeds. The app is designed to run seamlessly on **iOS**, **Android**, **Windows**, **macOS**, and **Linux**, providing a comprehensive experience for cat enthusiasts. 🐾
 
-    User-Friendly Interface: Utilizes Jetpack Compose for a modern and intuitive UI.
+---
 
-    Cat Facts: Fetches and displays a variety of interesting cat facts to educate and entertain users.
+## ✨ Features
 
-Installation
+- **Cross-Platform Compatibility**: Deployable on iOS, Android, Windows, macOS, and Linux using a single codebase.
+- **Cat Facts and Breeds**: Fetches and displays a variety of interesting facts about cats and detailed information about different cat breeds.
+- **Responsive UI**: Utilizes .NET MAUI's capabilities to deliver a consistent and adaptive user interface across platforms.
 
-To set up and run the project locally:
+---
 
-    Clone the Repository:
+## 🚀 Installation & Setup
 
-git clone https://github.com/rauljimm/Cat-Facts-MultiPlatform.git
+### Prerequisites
 
-Navigate to the Project Directory:
-
-    cd Cat-Facts-MultiPlatform
-
-    Open with Your IDE: It's recommended to use Android Studio for optimal support of Kotlin Multiplatform projects.
-
-    Build and Run: Sync the project and execute the run configuration for your target platform (Android or iOS).
-
-Technologies Used
-
-    Kotlin Multiplatform: Enables sharing code between Android and iOS platforms.
-
-    Jetpack Compose: Modern toolkit for building native UIs in Android.
-
-    SwiftUI (iOS): Leverages SwiftUI for the iOS user interface.
-
-Acknowledgments
-
-This project is inspired by the Cat Facts API and aims to provide a delightful experience for cat lovers across platforms.
-
-Feel free to contribute to the project by submitting issues or pull requests. Your feedback and suggestions are highly appreciated!
+- **.NET SDK**: Ensure you have the latest version of the [.NET SDK](https://dotnet.microsoft.com/download/dotnet) installed.
+- **.NET MAUI Workload**: Install the .NET MAUI workload by running:
+  ```bash
+  dotnet workload install maui
