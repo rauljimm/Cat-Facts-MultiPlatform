@@ -4,7 +4,8 @@
              xmlns:viewModels="clr-namespace:CatFacts.ViewModels"
              x:Class="CatFacts.Views.CatFactPage"
              Title="Cat Facts"
-             BackgroundImageSource="catbackground.jpg">
+             BackgroundImageSource="catbackground.jpg"
+             NavigationPage.HasNavigationBar="False">
     <Grid Padding="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

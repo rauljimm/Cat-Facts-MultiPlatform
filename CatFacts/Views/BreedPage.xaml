@@ -4,7 +4,8 @@
              xmlns:viewModels="clr-namespace:CatFacts.ViewModels"
              x:Class="CatFacts.Views.BreedPage"
              Title="Cat Breeds"
-             BackgroundImageSource="breedsbackground.jpg">
+             BackgroundImageSource="breedsbackground.jpg"
+             NavigationPage.HasNavigationBar="False">
     <Grid Padding="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
