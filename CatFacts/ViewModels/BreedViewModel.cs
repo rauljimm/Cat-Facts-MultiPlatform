@@ -41,12 +41,14 @@ namespace CatFacts.ViewModels
                 var breedList = await _breedService.GetBreedsAsync();
                 if (breedList != null && breedList.Any())
                 {
-                    Breeds.Clear();
-                    foreach (var newBreed in breedList)
-                    {
-                        await _databaseService.SaveBreedAsync(newBreed);
-                        Breeds.Add(newBreed);
-                    }
+                    var breedLength = breedList.LongCount();
+                    Random rnd = new Random();
+                    int randomIndex = rnd.Next((int)breedLength);
+
+                    var newBreed = breedList[randomIndex]; 
+
+                    await _databaseService.SaveBreedAsync(newBreed);
+                    Breeds.Add(newBreed);
                 }
             }
             catch (Exception ex)
