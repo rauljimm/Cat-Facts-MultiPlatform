@@ -1,79 +1,104 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewModels="clr-namespace:CatFacts.ViewModels"
              x:Class="CatFacts.Views.CatFactPage"
              Title="Cat Facts"
              BackgroundImageSource="catbackground.jpg"
              NavigationPage.HasNavigationBar="False">
-    <Grid Padding="10">
+
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#6200EE" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="WidthRequest" Value="140" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid Padding="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Button Text="Get New Cat Fact"
-                Grid.Row="0"
-                BackgroundColor="#6200EE"
-                TextColor="White"
-                WidthRequest="150"
-                FontSize="16"
-                Padding="10"
-                CornerRadius="10"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                Margin="0,10,0,10"
-                Command="{Binding GetCatFactCommand}"
-                IsEnabled="True" />
-
-        <Button Text="Go to Breeds"
-                Grid.Row="1"
-                WidthRequest="150"
-                BackgroundColor="#03DAC6"
-                TextColor="White"
-                FontSize="16"
-                Padding="10"
-                CornerRadius="10"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
+        <!-- Top Button: Eliminar (Clear All) -->
+        <Button Grid.Row="0"
+                Text="Clear All"
+                Style="{StaticResource ButtonStyle}"
+                Background="#FF4444"
+                HorizontalOptions="Start"
                 Margin="0,0,0,20"
-                Command="{Binding NavigateToBreedsCommand}"
-                IsEnabled="True" />
+                Command="{Binding DeleteAllCatFactCommand}" />
 
-        <CollectionView Grid.Row="2"
+        <!-- CollectionView for Cat Facts -->
+        <CollectionView Grid.Row="1"
                         ItemsSource="{Binding CatFacts}"
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="3" />
+                <LinearItemsLayout Orientation="Vertical" 
+                                 ItemSpacing="20" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BackgroundColor="Orange"
-                           Padding="10"
-                           CornerRadius="10"
-                           HasShadow="True">
-                        <StackLayout>
+                    <Border Background="#FF9800"
+                            Padding="15"
+                            Margin="0">
+                        <VerticalStackLayout Spacing="10">
                             <Label Text="{Binding Fact, StringFormat='Fact: {0}'}"
-                                   FontSize="16"
-                                   TextColor="Black"
-                                   FontAttributes="Bold"
-                                   LineBreakMode="WordWrap" />
+                                   FontSize="Title"
+                                   TextColor="#212121"
+                                   FontAttributes="Bold" />
                             <Label Text="{Binding Length, StringFormat='Length: {0}'}"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   TextColor="White" />
-                            <Button Text="Eliminar"
-                                    BackgroundColor="Red"
-                                    WidthRequest="200"
+                                   Style="{StaticResource LabelStyle}" />
+                            <Button Text="Delete"
+                                    Background="#D32F2F"
                                     TextColor="White"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CatFactViewModel}}, Path=DeleteCatFactCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IsEnabled="True" />
-                        </StackLayout>
-                    </Frame>
+                                    CornerRadius="8"
+                                    Padding="10"
+                                    WidthRequest="120"
+                                    HorizontalOptions="End"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CatFactViewModel}}, 
+                                                    Path=DeleteCatFactCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </VerticalStackLayout>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <!-- Bottom Button: Go to Breeds -->
+        <Button Grid.Row="2"
+                Text="Go to Breeds"
+                Style="{StaticResource ButtonStyle}"
+                Background="#03DAC6"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"
+                Command="{Binding NavigateToBreedsCommand}" />
+
+        <!-- Floating Action Button: Get New Cat Fact -->
+        <Button Text="+"
+                Background="#6200EE"
+                TextColor="White"
+                FontSize="Large"
+                WidthRequest="56"
+                HeightRequest="56"
+                CornerRadius="28"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="0,0,20,20"
+                Command="{Binding GetCatFactCommand}"/>
     </Grid>
 </ContentPage>

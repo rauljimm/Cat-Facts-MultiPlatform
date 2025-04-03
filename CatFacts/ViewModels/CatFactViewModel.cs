@@ -67,6 +67,25 @@ namespace CatFacts.ViewModels
         }
 
         [RelayCommand]
+        private async Task DeleteAllCatFact()
+        {
+            
+            try
+            {
+                foreach(var fact in catFacts)
+                {
+                    await _databaseService.DeleteCatFactAsync(fact);
+                    
+                }
+                catFacts.Clear();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar el CatFact: {ex.Message}", "OK");
+            }
+        }
+
+        [RelayCommand]
         private async Task NavigateToBreeds()
         {
             Console.WriteLine("NavigateToBreedsCommand ejecutado desde CatFactViewModel.");

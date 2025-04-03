@@ -1,91 +1,111 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewModels="clr-namespace:CatFacts.ViewModels"
              x:Class="CatFacts.Views.BreedPage"
              Title="Cat Breeds"
              BackgroundImageSource="breedsbackground.jpg"
              NavigationPage.HasNavigationBar="False">
-    <Grid Padding="10">
+
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#6200EE" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="WidthRequest" Value="140" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid Padding="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Button Text="Get New Breed"
-                Grid.Row="0"
-                BackgroundColor="#6200EE"
-                WidthRequest="150"
-                TextColor="White"
-                FontSize="16"
-                Padding="10"
-                CornerRadius="10"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                Margin="0,10,0,10"
-                Command="{Binding GetBreedCommand}"
-                IsEnabled="True" />
-
-        <Button Text="Go to Cat Facts"
-                Grid.Row="1"
-                BackgroundColor="#03DAC6"
-                WidthRequest="150"
-                TextColor="White"
-                FontSize="16"
-                Padding="10"
-                CornerRadius="10"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
+        <!-- Top Button: Clear All -->
+        <Button Grid.Row="0"
+                Text="Clear All"
+                Style="{StaticResource ButtonStyle}"
+                Background="#FF4444"
+                HorizontalOptions="Start"
                 Margin="0,0,0,20"
-                Command="{Binding NavigateToCatFactsCommand}"
-                IsEnabled="True" />
+                Command="{Binding DeleteAllBreedsCommand}" />
 
-        <CollectionView Grid.Row="2"
+        <!-- CollectionView for Breeds -->
+        <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Breeds}"
                         SelectionMode="None">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="3" />
+                <LinearItemsLayout Orientation="Vertical" 
+                                 ItemSpacing="20" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BackgroundColor="Orange"
-                           Padding="10"
-                           CornerRadius="10"
-                           HasShadow="True">
-                        <StackLayout>
+                    <Border Background="#FF9800"
+                            Padding="15"
+                            Margin="0">
+                        <VerticalStackLayout Spacing="10">
                             <Label Text="{Binding BreedName, StringFormat='Breed: {0}'}"
-                                   FontSize="16"
-                                   TextColor="Black"
-                                   FontAttributes="Bold"
-                                   LineBreakMode="WordWrap" />
+                                   FontSize="Title"
+                                   TextColor="#212121"
+                                   FontAttributes="Bold" />
                             <Label Text="{Binding Country, StringFormat='Country: {0}'}"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   TextColor="White" />
+                                   Style="{StaticResource LabelStyle}" />
                             <Label Text="{Binding Origin, StringFormat='Origin: {0}'}"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   TextColor="White" />
+                                   Style="{StaticResource LabelStyle}" />
                             <Label Text="{Binding Coat, StringFormat='Coat: {0}'}"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   TextColor="White" />
+                                   Style="{StaticResource LabelStyle}" />
                             <Label Text="{Binding Pattern, StringFormat='Pattern: {0}'}"
-                                   FontSize="14"
-                                   FontAttributes="Bold"
-                                   TextColor="White" />
-                            <Button Text="Eliminar"
-                                    BackgroundColor="Red"
+                                   Style="{StaticResource LabelStyle}" />
+                            <Button Text="Delete"
+                                    Background="#D32F2F"
                                     TextColor="White"
-                                    WidthRequest="200"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BreedViewModel}}, Path=DeleteBreedCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IsEnabled="True" />
-                        </StackLayout>
-                    </Frame>
+                                    CornerRadius="8"
+                                    Padding="10"
+                                    WidthRequest="120"
+                                    HorizontalOptions="End"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BreedViewModel}}, 
+                                                    Path=DeleteBreedCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </VerticalStackLayout>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <!-- Bottom Button: Go to Cat Facts -->
+        <Button Grid.Row="2"
+                Text="Go to Cat Facts"
+                Style="{StaticResource ButtonStyle}"
+                Background="#03DAC6"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"
+                Command="{Binding NavigateToCatFactsCommand}" />
+
+        <!-- Floating Action Button: Get New Breed -->
+        <Button Text="+"
+                Background="#6200EE"
+                TextColor="White"
+                FontSize="Large"
+                WidthRequest="56"
+                HeightRequest="56"
+                CornerRadius="28"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="0,0,20,20"
+                Command="{Binding GetBreedCommand}"
+                />
     </Grid>
 </ContentPage>

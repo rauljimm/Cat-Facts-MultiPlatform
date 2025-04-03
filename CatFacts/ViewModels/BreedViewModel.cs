@@ -45,7 +45,7 @@ namespace CatFacts.ViewModels
                     Random rnd = new Random();
                     int randomIndex = rnd.Next((int)breedLength);
 
-                    var newBreed = breedList[randomIndex]; 
+                    var newBreed = breedList[randomIndex];
 
                     await _databaseService.SaveBreedAsync(newBreed);
                     Breeds.Add(newBreed);
@@ -69,6 +69,23 @@ namespace CatFacts.ViewModels
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar la raza: {ex.Message}", "OK");
+            }
+        }
+
+        [RelayCommand]
+        private async Task DeleteAllBreeds()
+        {
+            try
+            {
+                foreach (var breed in Breeds)
+                {
+                    await _databaseService.DeleteBreedAsync(breed);
+                }
+                Breeds.Clear();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar todas las razas: {ex.Message}", "OK");
             }
         }
 
