@@ -1,8 +1,12 @@
 ﻿using CatFacts.Models;
 using CatFacts.Services;
+using CatFacts.Views.Popups;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using CatFacts.Views;
 
 namespace CatFacts.ViewModels
@@ -69,19 +73,17 @@ namespace CatFacts.ViewModels
         [RelayCommand]
         private async Task DeleteAllCatFact()
         {
-            
             try
             {
-                foreach(var fact in catFacts)
+                foreach (var fact in CatFacts.ToList()) // Usar ToList para evitar problemas de modificación durante iteración
                 {
                     await _databaseService.DeleteCatFactAsync(fact);
-                    
                 }
-                catFacts.Clear();
+                CatFacts.Clear();
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar el CatFact: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar los CatFacts: {ex.Message}", "OK");
             }
         }
 
@@ -90,6 +92,32 @@ namespace CatFacts.ViewModels
         {
             Console.WriteLine("NavigateToBreedsCommand ejecutado desde CatFactViewModel.");
             await _navigationService.NavigateToAsync<BreedPage>();
+        }
+
+        [RelayCommand]
+        private async Task EditCatFact(CatFact catFact)
+        {
+            if (catFact == null) return;
+
+            var popup = new EditCatFactPopup(catFact);
+            var result = await Application.Current.MainPage.ShowPopupAsync(popup);
+
+            if (result is CatFact updatedCatFact)
+            {
+                try
+                {
+                    await _databaseService.SaveCatFactAsync(updatedCatFact);
+                    var index = CatFacts.IndexOf(catFact);
+                    if (index != -1)
+                    {
+                        CatFacts[index] = updatedCatFact; // Actualiza en la colección observable
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo guardar el CatFact: {ex.Message}", "OK");
+                }
+            }
         }
     }
 }

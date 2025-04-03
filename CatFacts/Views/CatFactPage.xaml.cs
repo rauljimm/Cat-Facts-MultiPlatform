@@ -8,7 +8,6 @@ namespace CatFacts.Views
         {
             InitializeComponent();
             BindingContext = viewModel;
-            Console.WriteLine("CatFactPage inicializada.");
         }
     }
 }

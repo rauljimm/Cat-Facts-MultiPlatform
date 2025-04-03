@@ -1,5 +1,7 @@
 ﻿using CatFacts.Models;
 using CatFacts.Services;
+using CatFacts.Views.Popups;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -77,7 +79,7 @@ namespace CatFacts.ViewModels
         {
             try
             {
-                foreach (var breed in Breeds)
+                foreach (var breed in Breeds.ToList()) // Usar ToList para evitar problemas de modificación durante iteración
                 {
                     await _databaseService.DeleteBreedAsync(breed);
                 }
@@ -94,6 +96,32 @@ namespace CatFacts.ViewModels
         {
             Console.WriteLine("NavigateToCatFactsCommand ejecutado desde BreedViewModel.");
             await _navigationService.NavigateToAsync<CatFactPage>();
+        }
+
+        [RelayCommand]
+        private async Task EditBreed(Breed breed)
+        {
+            if (breed == null) return;
+
+            var popup = new EditBreedPopup(breed);
+            var result = await Application.Current.MainPage.ShowPopupAsync(popup);
+
+            if (result is Breed updatedBreed)
+            {
+                try
+                {
+                    await _databaseService.SaveBreedAsync(updatedBreed);
+                    var index = Breeds.IndexOf(breed);
+                    if (index != -1)
+                    {
+                        Breeds[index] = updatedBreed; // Actualiza en la colección observable
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo guardar la raza: {ex.Message}", "OK");
+                }
+            }
         }
     }
 }
