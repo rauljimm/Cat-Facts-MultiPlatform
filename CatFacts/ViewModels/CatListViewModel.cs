@@ -34,5 +34,23 @@ namespace CatFacts.ViewModels
             Console.WriteLine("NavigateToCreateCatPage ejecutado desde MainViewModel.");
             await _navigationService.NavigateToAsync<MainPage>();
         }
+
+
+        [RelayCommand]
+        public async Task DeleteAllCats()
+        {
+            try
+            {
+                foreach (var cat in Cats.ToList())
+                {
+                    await _catService.DeleteCatAsync(cat);
+                }
+                Cats.Clear();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar todos los gatos: {ex.Message}", "OK");
+            }
+        }
     }
 }

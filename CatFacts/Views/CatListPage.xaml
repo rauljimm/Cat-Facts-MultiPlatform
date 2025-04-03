@@ -51,6 +51,16 @@
             <Setter Property="Margin" Value="0, 15, 0, 8" />
             <!-- Reducido -->
         </Style>
+
+        <!-- Estilo para el botón -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#03DAC6" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="WidthRequest" Value="200" />
+        </Style>
     </ContentPage.Resources>
 
     <ScrollView>
@@ -59,13 +69,22 @@
             <Label Text="Lista de Gatos" Style="{StaticResource TitleStyle}" />
 
             <Button Grid.Row="2"
-                Text="Home"
-                Style="{StaticResource ButtonStyle}"
-                BackgroundColor="#03DAC6"
-                WidthRequest="200"
-                HorizontalOptions="Center"
-                Margin="0,20,0,0"
-                Command="{Binding NavigateToHomePageCommand}" />
+                    Text="Home"
+                    Style="{StaticResource ButtonStyle}"
+                    BackgroundColor="#03DAC6"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    Margin="0,20,0,0"
+                    Command="{Binding NavigateToHomePageCommand}" />
+
+            <Button Grid.Row="3"
+                    Text="Clear All"
+                    Style="{StaticResource ButtonStyle}"
+                    BackgroundColor="#6200EE"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    Margin="0,20,0,0"
+                    Command="{Binding DeleteAllCatsCommand}" />
 
             <!-- Grid para los gatos, ahora con una sola columna -->
             <Grid x:Name="CatGrid" 

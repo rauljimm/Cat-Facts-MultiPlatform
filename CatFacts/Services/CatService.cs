@@ -24,5 +24,10 @@ namespace CatFacts.Services
             return await _databaseService.GetCatsAsync();
         }
 
+        public async Task DeleteCatAsync(Cat cat)
+        {
+            await _databaseService.DeleteCatAsync(cat);
+        }
+
     }
 }
