@@ -24,7 +24,7 @@
 		<ApplicationTitle>CatFacts</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.catfacts</ApplicationId>
+		<ApplicationId>rjm.catfacts</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
