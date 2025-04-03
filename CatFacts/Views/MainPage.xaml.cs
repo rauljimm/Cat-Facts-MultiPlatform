@@ -1,14 +1,14 @@
-﻿using CatFacts.ViewModels;
+﻿using Microsoft.Maui.Controls;
+using CatFacts.ViewModels;
 
-namespace CatFacts
+namespace CatFacts;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public MainPage(MainViewModel vm)
     {
-        public MainPage(MainViewModel viewModel)
-        {
-            InitializeComponent();
-            BindingContext = viewModel;
-            Console.WriteLine("MainPage inicializada.");
-        }
+        InitializeComponent();
+        BindingContext = vm;
     }
+
 }
