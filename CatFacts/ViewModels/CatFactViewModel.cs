@@ -75,7 +75,7 @@ namespace CatFacts.ViewModels
         {
             try
             {
-                foreach (var fact in CatFacts.ToList()) // Usar ToList para evitar problemas de modificación durante iteración
+                foreach (var fact in CatFacts.ToList()) 
                 {
                     await _databaseService.DeleteCatFactAsync(fact);
                 }
@@ -88,10 +88,10 @@ namespace CatFacts.ViewModels
         }
 
         [RelayCommand]
-        private async Task NavigateToBreeds()
+        private async Task NavigateToHomePage()
         {
-            Console.WriteLine("NavigateToBreedsCommand ejecutado desde CatFactViewModel.");
-            await _navigationService.NavigateToAsync<BreedPage>();
+            Console.WriteLine("NavigateToCreateCatPage ejecutado desde MainViewModel.");
+            await _navigationService.NavigateToAsync<MainPage>();
         }
 
         [RelayCommand]

@@ -83,13 +83,13 @@
         </CollectionView>
 
         <Button Grid.Row="2"
-                Text="Go to Breeds"
+                Text="Home"
                 Style="{StaticResource ButtonStyle}"
                 BackgroundColor="#03DAC6"
                 WidthRequest="200"
                 HorizontalOptions="Center"
                 Margin="0,20,0,0"
-                Command="{Binding NavigateToBreedsCommand}" />
+                Command="{Binding NavigateToHomePageCommand}" />
 
         <Button Text="+"
                 BackgroundColor="#6200EE"

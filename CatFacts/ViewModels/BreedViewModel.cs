@@ -79,7 +79,7 @@ namespace CatFacts.ViewModels
         {
             try
             {
-                foreach (var breed in Breeds.ToList()) // Usar ToList para evitar problemas de modificación durante iteración
+                foreach (var breed in Breeds.ToList()) 
                 {
                     await _databaseService.DeleteBreedAsync(breed);
                 }
@@ -92,10 +92,10 @@ namespace CatFacts.ViewModels
         }
 
         [RelayCommand]
-        private async Task NavigateToCatFacts()
+        private async Task NavigateToHomePage()
         {
-            Console.WriteLine("NavigateToCatFactsCommand ejecutado desde BreedViewModel.");
-            await _navigationService.NavigateToAsync<CatFactPage>();
+            Console.WriteLine("NavigateToCreateCatPage ejecutado desde MainViewModel.");
+            await _navigationService.NavigateToAsync<MainPage>();
         }
 
         [RelayCommand]
@@ -114,7 +114,7 @@ namespace CatFacts.ViewModels
                     var index = Breeds.IndexOf(breed);
                     if (index != -1)
                     {
-                        Breeds[index] = updatedBreed; // Actualiza en la colección observable
+                        Breeds[index] = updatedBreed;
                     }
                 }
                 catch (Exception ex)

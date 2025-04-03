@@ -15,5 +15,9 @@ namespace CatFacts.Services
         Task<List<CatFact>> GetCatFactsAsync();
         Task<int> SaveCatFactAsync(CatFact catFact);
         Task<int> DeleteCatFactAsync(CatFact catFact);
+        Task<int> SaveCatAsync(Cat cat);
+        Task<List<Cat>> GetCatsAsync();
+        Task<int> DeleteCatAsync(Cat cat);
+
     }
 }

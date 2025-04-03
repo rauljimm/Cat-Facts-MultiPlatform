@@ -13,6 +13,7 @@ namespace CatFacts.Services
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Breed>().Wait();
             _database.CreateTableAsync<CatFact>().Wait();
+            _database.CreateTableAsync<Cat>().Wait();
         }
 
         public Task<List<Breed>> GetBreedsAsync()
@@ -44,5 +45,10 @@ namespace CatFacts.Services
         {
             return _database.DeleteAsync(catFact);
         }
+
+        public Task<int> SaveCatAsync(Cat cat) => cat.Id != 0 ? _database.UpdateAsync(cat) : _database.InsertAsync(cat);
+        public Task<List<Cat>> GetCatsAsync() => _database.Table<Cat>().ToListAsync();
+        public Task<int> DeleteCatAsync(Cat cat) => _database.DeleteAsync(cat);
+
     }
 }

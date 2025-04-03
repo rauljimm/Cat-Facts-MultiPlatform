@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:CatFacts.ViewModels"
+             x:Class="CatFacts.Views.CreateCatPage"
+             Title="Create a Cat"
+             BackgroundImageSource="catbackground.jpg"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Resources>
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="TextColor" Value="#212121" />
+            <Setter Property="PlaceholderColor" Value="Gray" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="Margin" Value="10,5" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#6200EE" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="WidthRequest" Value="140" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Button Grid.Row="2"
+                Text="Home"
+                Style="{StaticResource ButtonStyle}"
+                BackgroundColor="#03DAC6"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"
+                Command="{Binding NavigateToHomePageCommand}" />
+        <Label Text="Add a New Cat"
+               FontSize="Title"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"/>
+
+        <Entry x:Name="NameEntry"
+               Style="{StaticResource EntryStyle}"
+               Placeholder="Enter cat's name"
+               Text="{Binding CatName, Mode=TwoWay}"/>
+
+        <Entry x:Name="BreedEntry"
+               Style="{StaticResource EntryStyle}"
+               Placeholder="Enter cat's breed"
+               Text="{Binding CatBreed, Mode=TwoWay}"/>
+
+        <Entry x:Name="ColorEntry"
+               Style="{StaticResource EntryStyle}"
+               Placeholder="Enter cat's color"
+               Text="{Binding CatColor, Mode=TwoWay}"/>
+
+        <Entry x:Name="AgeEntry"
+               Style="{StaticResource EntryStyle}"
+               Placeholder="Enter cat's age"
+               Keyboard="Numeric"
+               Text="{Binding CatAge, Mode=TwoWay}"/>
+
+        <Button Text="Create Cat"
+                Style="{StaticResource ButtonStyle}"
+                Command="{Binding CreateCatCommand}"
+                HorizontalOptions="Center"/>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CatFacts.Views.CatListPage"
+             Title="Cat List"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="catbackground.jpg">
+
+    <ContentPage.Resources>
+        <!-- Estilo para las etiquetas de texto -->
+        <Style x:Key="CatTextStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <!-- Reducido para móvil -->
+            <Setter Property="TextColor" Value="#333333" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+
+        <!-- Estilo para el contenedor Frame -->
+        <Style x:Key="CatFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="Padding" Value="10" />
+            <!-- Reducido -->
+            <Setter Property="CornerRadius" Value="15" />
+            <!-- Reducido -->
+            <Setter Property="Margin" Value="8" />
+            <!-- Reducido -->
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="HeightRequest" Value="120" />
+            <!-- Más pequeño -->
+            <Setter Property="WidthRequest" Value="300" />
+            <!-- Ajustado para una columna -->
+        </Style>
+
+        <!-- Estilo para las imágenes de los gatos -->
+        <Style x:Key="CatImageStyle" TargetType="Image">
+            <Setter Property="Aspect" Value="AspectFill" />
+            <Setter Property="HeightRequest" Value="80" />
+            <!-- Reducido -->
+            <Setter Property="WidthRequest" Value="80" />
+            <!-- Reducido -->
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+
+        <!-- Estilo para el título -->
+        <Style x:Key="TitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="24" />
+            <!-- Reducido ligeramente -->
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#6200EE" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0, 15, 0, 8" />
+            <!-- Reducido -->
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <!-- Título de la página -->
+            <Label Text="Lista de Gatos" Style="{StaticResource TitleStyle}" />
+
+            <Button Grid.Row="2"
+                Text="Home"
+                Style="{StaticResource ButtonStyle}"
+                BackgroundColor="#03DAC6"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"
+                Command="{Binding NavigateToHomePageCommand}" />
+
+            <!-- Grid para los gatos, ahora con una sola columna -->
+            <Grid x:Name="CatGrid" 
+                  Padding="5" 
+                  RowSpacing="10" 
+                  HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <!-- Una sola columna -->
+                </Grid.ColumnDefinitions>
+                <!-- Las filas se agregarán dinámicamente en el código -->
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

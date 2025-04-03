@@ -17,12 +17,12 @@ public partial class EditCatFactPopup : Popup
 
     private void OnSaveClicked(object sender, EventArgs e)
     {
-        CatFact.Length = CatFact.Fact.Length; // Actualiza la longitud
-        Close(CatFact); // Devuelve el CatFact modificado
+        CatFact.Length = CatFact.Fact.Length; 
+        Close(CatFact); 
     }
 
     private void OnCancelClicked(object sender, EventArgs e)
     {
-        Close(null); // Cierra sin cambios
+        Close(null);
     }
 }

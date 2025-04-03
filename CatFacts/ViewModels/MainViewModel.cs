@@ -28,5 +28,20 @@ namespace CatFacts.ViewModels
             Console.WriteLine("NavigateToCatFactsCommand ejecutado.");
             await _navigationService.NavigateToAsync<CatFactPage>();
         }
+
+        [RelayCommand]
+        private async Task NavigateToCreateCatPage()
+        {
+            Console.WriteLine("NavigateToCreateCatPage ejecutado desde MainViewModel.");
+            await _navigationService.NavigateToAsync<CreateCatPage>();
+        }
+
+        [RelayCommand]
+        private async Task NavigateToCatsPage()
+        {
+            Console.WriteLine("NavigateToCreateCatPage ejecutado desde MainViewModel.");
+            await _navigationService.NavigateToAsync<CatListPage>();
+        }
+
     }
 }

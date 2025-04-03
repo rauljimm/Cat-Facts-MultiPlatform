@@ -25,11 +25,11 @@ public partial class EditBreedPopup : Popup
 
     private void OnSaveClicked(object sender, EventArgs e)
     {
-        Close(Breed); // Devuelve la raza modificada
+        Close(Breed); 
     }
 
     private void OnCancelClicked(object sender, EventArgs e)
     {
-        Close(null); // Cierra sin cambios
+        Close(null);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CatFacts.Services;
 using CatFacts.ViewModels;
 using CatFacts.Views;
+using CatFacts.Views.Popups;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
@@ -23,6 +24,7 @@ public static class MauiProgram
         // Registro de servicios
         builder.Services.AddHttpClient();
         builder.Services.AddSingleton<ICatFactService, CatFactService>();
+        builder.Services.AddSingleton<ICatService, CatService>();
         builder.Services.AddSingleton<IBreedService, BreedService>();
         builder.Services.AddSingleton<INavigationService, NavigationService>();
         builder.Services.AddSingleton<IDatabaseService>(provider =>
@@ -32,11 +34,17 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainViewModel>();
         builder.Services.AddSingleton<CatFactViewModel>();
         builder.Services.AddSingleton<BreedViewModel>();
+        builder.Services.AddSingleton<CatViewModel>();
+        builder.Services.AddSingleton<CatListViewModel>();
 
-        // Registro de páginas
+        // Registro de páginas    
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<CatFactPage>();
         builder.Services.AddTransient<BreedPage>();
+        builder.Services.AddTransient<CreateCatPage>();
+        builder.Services.AddTransient<CatListPage>();
+        builder.Services.AddSingleton<EditCatPopup>();
+        builder.Services.AddSingleton<AppShell>();
 
         // Hacer IServiceProvider disponible
         builder.Services.AddSingleton<IServiceProvider>(provider => provider);
