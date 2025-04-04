@@ -27,6 +27,17 @@ namespace CatFacts.Views
             BindingContext = viewModel;
             _databaseService = databaseService ?? throw new ArgumentNullException(nameof(databaseService), "El servicio de base de datos no puede ser null.");
             _navigationService = navigationService;
+
+            // Suscribirse a los mensajes del ViewModel
+            MessagingCenter.Subscribe<CatListViewModel>(this, "CatsDeleted", (sender) =>
+            {
+                RefreshCatGrid(); // Refresca el Grid cuando se borran todos los gatos
+            });
+
+            MessagingCenter.Subscribe<CatListViewModel>(this, "CatDeleted", (sender) =>
+            {
+                RefreshCatGrid(); // Refresca el Grid cuando se borra un gato individual
+            });
         }
 
         protected override async void OnAppearing()
@@ -39,24 +50,24 @@ namespace CatFacts.Views
                 return;
             }
 
-
             await ((CatListViewModel)BindingContext).LoadCatsAsync();
+            RefreshCatGrid(); // Refresca el Grid al aparecer la página
+        }
 
-
+        private void RefreshCatGrid()
+        {
             if (CatGrid == null)
             {
-                await DisplayAlert("Error", "CatGrid no está inicializado en el XAML.", "OK");
+                DisplayAlert("Error", "CatGrid no está inicializado en el XAML.", "OK");
                 return;
-
             }
+
+            CatGrid.Children.Clear();
+            CatGrid.RowDefinitions.Clear();
 
             var viewModel = (CatListViewModel)BindingContext;
             if (viewModel.Cats != null && viewModel.Cats.Any())
             {
-
-                CatGrid.Children.Clear();
-                CatGrid.RowDefinitions.Clear();
-
                 int totalCats = viewModel.Cats.Count;
                 for (int i = 0; i < totalCats; i++)
                 {
@@ -64,7 +75,6 @@ namespace CatFacts.Views
                 }
 
                 int row = 0;
-
                 foreach (var cat in viewModel.Cats)
                 {
                     if (cat == null) continue;
@@ -109,8 +119,25 @@ namespace CatFacts.Views
                     detailsLayout.Children.Add(colorLabel);
                     detailsLayout.Children.Add(ageLabel);
 
+                    // Botón de eliminar
+                    var deleteButton = new Button
+                    {
+                        Text = "Eliminar",
+                        BackgroundColor = Color.FromHex("#FF5555"), // Rojo para indicar eliminación
+                        TextColor = Colors.White,
+                        FontSize = 12,
+                        Padding = 5,
+                        CornerRadius = 5,
+                        WidthRequest = 80,
+                        HeightRequest = 30,
+                        VerticalOptions = LayoutOptions.Center,
+                        Command = ((CatListViewModel)BindingContext).DeleteCatCommand,
+                        CommandParameter = cat
+                    };
+
                     horizontalLayout.Children.Add(catImage);
                     horizontalLayout.Children.Add(detailsLayout);
+                    horizontalLayout.Children.Add(deleteButton); // Añadimos el botón al layout
 
                     catFrame.Content = horizontalLayout;
 
@@ -153,7 +180,7 @@ namespace CatFacts.Views
                 }
 
                 await ((CatListViewModel)BindingContext).LoadCatsAsync();
-                OnAppearing();
+                RefreshCatGrid(); // Refresca el Grid después de editar
             }
         }
     }

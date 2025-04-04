@@ -3,7 +3,6 @@ using CatFacts.ViewModels;
 using CatFacts.Views;
 using CatFacts.Views.Popups;
 using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
 
 namespace CatFacts;
 

@@ -80,6 +80,7 @@ namespace CatFacts.ViewModels
                     await _databaseService.DeleteCatFactAsync(fact);
                 }
                 CatFacts.Clear();
+                
             }
             catch (Exception ex)
             {
