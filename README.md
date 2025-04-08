@@ -7,7 +7,7 @@
 **Cat Facts MultiPlatform** is a cross-platform application built with **.NET MAUI** and **C#** that retrieves information about cats and their breeds. The app is designed to run seamlessly on **iOS**, **Android**, **Windows**, **macOS**, and **Linux**.
 
 
-![CatFacts Logo](https://github.com/rauljimm/CatFacts/blob/main/CatFacts/Resources/AppIcon/appicon.svg)
+![CatFacts Image](https://github.com/rauljimm/CatFacts/blob/main/CatFacts/Resources/Images/cat_view.jpg)
 
 ## ✨ Features
 
