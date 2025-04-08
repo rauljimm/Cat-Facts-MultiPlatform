@@ -21,7 +21,7 @@ namespace CatFacts.Views
 
             if (viewModel == null)
             {
-                throw new ArgumentNullException(nameof(viewModel), "El ViewModel no puede ser null.");
+                throw new ArgumentNullException(nameof(viewModel), "ViewModel cannot be null.");
             }
 
             BindingContext = viewModel;
@@ -46,7 +46,7 @@ namespace CatFacts.Views
 
             if (BindingContext == null)
             {
-                await DisplayAlert("Error", "El BindingContext no está inicializado.", "OK");
+                await DisplayAlert("Error", "The BindingContext is not initialized.", "OK");
                 return;
             }
 
@@ -58,7 +58,7 @@ namespace CatFacts.Views
         {
             if (CatGrid == null)
             {
-                DisplayAlert("Error", "CatGrid no está inicializado en el XAML.", "OK");
+                DisplayAlert("Error", "CatGrid is not initialized in the XAML.", "OK");
                 return;
             }
 
@@ -104,15 +104,15 @@ namespace CatFacts.Views
 
                     var nameLabel = new Label
                     {
-                        Text = cat.Name ?? "Sin nombre",
+                        Text = cat.Name ?? "No name",
                         FontSize = 16,
                         FontAttributes = FontAttributes.Bold,
                         TextColor = Color.FromHex("#6200EE")
                     };
 
-                    var breedLabel = new Label { Text = $"Raza: {cat.Breed ?? "Desconocida"}", Style = (Style)Resources["CatTextStyle"] };
-                    var colorLabel = new Label { Text = $"Color: {cat.Color ?? "Desconocido"}", Style = (Style)Resources["CatTextStyle"] };
-                    var ageLabel = new Label { Text = $"Edad: {(cat.Age > 0 ? cat.Age.ToString() : "Desconocida")}", Style = (Style)Resources["CatTextStyle"] };
+                    var breedLabel = new Label { Text = $"Breed: {cat.Breed ?? "Unknown"}", Style = (Style)Resources["CatTextStyle"] };
+                    var colorLabel = new Label { Text = $"Pattern: {cat.Color ?? "Unknown"}", Style = (Style)Resources["CatTextStyle"] };
+                    var ageLabel = new Label { Text = $"Age: {(cat.Age > 0 ? cat.Age.ToString() : "Unknown")}", Style = (Style)Resources["CatTextStyle"] };
 
                     detailsLayout.Children.Add(nameLabel);
                     detailsLayout.Children.Add(breedLabel);
@@ -161,7 +161,7 @@ namespace CatFacts.Views
         {
             if (cat == null)
             {
-                await DisplayAlert("Error", "El gato seleccionado es null.", "OK");
+                await DisplayAlert("Error", "The selected cat is null.", "OK");
                 return;
             }
 

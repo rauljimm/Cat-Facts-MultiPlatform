@@ -7,7 +7,7 @@
              BackgroundImageSource="catbackground.jpg">
 
     <ContentPage.Resources>
-        <!-- Estilos existentes -->
+        <!-- Existing styles -->
         <Style x:Key="CatTextStyle" TargetType="Label">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="TextColor" Value="#333333" />
@@ -51,7 +51,7 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <Label Text="Lista de Gatos" Style="{StaticResource TitleStyle}" />
+            <Label Text="Cat List" Style="{StaticResource TitleStyle}" />
 
             <Button Grid.Row="2"
                     Text="Home"

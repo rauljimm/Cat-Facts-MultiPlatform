@@ -1,93 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CatFacts.MainPage"
-             BackgroundImageSource="mainpage_background.jpg"
-             NavigationPage.HasNavigationBar="False">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="CatFacts.MainPage"
+            BackgroundImageSource="mainpage_background.jpg"
+            NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.Resources>
-        <!-- Estilo para el título -->
-        <Style x:Key="TitleStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="28" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="HorizontalOptions" Value="Center" />
-            <Setter Property="VerticalOptions" Value="Center" />
-            <Setter Property="Margin" Value="0, 20, 0, 30" />
-        </Style>
+   <ContentPage.Resources>
+       <!-- Estilo para el título -->
+       <Style x:Key="TitleStyle" TargetType="Label">
+           <Setter Property="FontSize" Value="28" />
+           <Setter Property="FontAttributes" Value="Bold" />
+           <Setter Property="TextColor" Value="White" />
+           <Setter Property="HorizontalOptions" Value="Center" />
+           <Setter Property="VerticalOptions" Value="Center" />
+           <Setter Property="Margin" Value="0, 20, 0, 30" />
+       </Style>
 
-        <!-- Estilo para los botones -->
-        <Style x:Key="NavButtonStyle" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="#6200EE" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="Padding" Value="15" />
-            <Setter Property="CornerRadius" Value="15" />
-            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-            <Setter Property="VerticalOptions" Value="Center" />
-            <Setter Property="Margin" Value="10, 5" />
-            <Setter Property="HeightRequest" Value="50" />
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="0.95" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </ContentPage.Resources>
+       <!-- Estilo para los botones -->
+       <Style x:Key="NavButtonStyle" TargetType="Button">
+           <Setter Property="BackgroundColor" Value="#6200EE" />
+           <Setter Property="TextColor" Value="White" />
+           <Setter Property="FontSize" Value="16" />
+           <Setter Property="FontAttributes" Value="Bold" />
+           <Setter Property="Padding" Value="15" />
+           <Setter Property="CornerRadius" Value="15" />
+           <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+           <Setter Property="VerticalOptions" Value="Center" />
+           <Setter Property="Margin" Value="10, 5" />
+           <Setter Property="HeightRequest" Value="50" />
+           <Setter Property="VisualStateManager.VisualStateGroups">
+               <VisualStateGroupList>
+                   <VisualStateGroup x:Name="CommonStates">
+                       <VisualState x:Name="Normal">
+                           <VisualState.Setters>
+                               <Setter Property="Scale" Value="1" />
+                           </VisualState.Setters>
+                       </VisualState>
+                       <VisualState x:Name="Pressed">
+                           <VisualState.Setters>
+                               <Setter Property="Scale" Value="0.95" />
+                           </VisualState.Setters>
+                       </VisualState>
+                   </VisualStateGroup>
+               </VisualStateGroupList>
+           </Setter>
+       </Style>
+   </ContentPage.Resources>
 
-    <Grid Padding="20">
-        <!-- Fondo semitransparente para mejorar la legibilidad -->
-        <BoxView BackgroundColor="#80000000" Grid.RowSpan="5" />
+   <Grid Padding="20">
+       <!-- Fondo semitransparente para mejorar la legibilidad -->
+       <BoxView BackgroundColor="#80000000" Grid.RowSpan="5" />
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+       <Grid.RowDefinitions>
+           <RowDefinition Height="Auto" />
+           <RowDefinition Height="Auto" />
+           <RowDefinition Height="Auto" />
+           <RowDefinition Height="Auto" />
+           <RowDefinition Height="Auto" />
+           <RowDefinition Height="*" />
+       </Grid.RowDefinitions>
 
-        <!-- Título -->
-        <Label Text="Bienvenido a CatFacts"
-               Style="{StaticResource TitleStyle}"
-               Grid.Row="0" />
+       <!-- Título -->
+       <Label Grid.Row="0"
+              Style="{StaticResource TitleStyle}"
+              Text="Welcome to CatFacts" />
 
-        <!-- Botones de navegación -->
-        <Button Text="Go to Breeds"
-                Style="{StaticResource NavButtonStyle}"
-                BackgroundColor="#6200EE"
-                Command="{Binding NavigateToBreedsCommand}"
-                Grid.Row="1" />
+       <!-- Botones de navegación -->
+       <Button Text="Go to Breeds"
+               Style="{StaticResource NavButtonStyle}"
+               BackgroundColor="#6200EE"
+               Command="{Binding NavigateToBreedsCommand}"
+               Grid.Row="1" />
 
-        <Button Text="Go to Cat Facts"
-                Style="{StaticResource NavButtonStyle}"
-                BackgroundColor="#03DAC6"
-                Command="{Binding NavigateToCatFactsCommand}"
-                Grid.Row="2" />
+       <Button Text="Go to Cat Facts"
+               Style="{StaticResource NavButtonStyle}"
+               BackgroundColor="#03DAC6"
+               Command="{Binding NavigateToCatFactsCommand}"
+               Grid.Row="2" />
 
-        <Button Text="Go to Create Cats"
-                Style="{StaticResource NavButtonStyle}"
-                BackgroundColor="#FF9800"
-                Command="{Binding NavigateToCreateCatPageCommand}"
-                Grid.Row="3" />
+       <Button Text="Go to Create Cats"
+               Style="{StaticResource NavButtonStyle}"
+               BackgroundColor="#FF9800"
+               Command="{Binding NavigateToCreateCatPageCommand}"
+               Grid.Row="3" />
 
-        <Button Text="Go to Cats Page"
-                Style="{StaticResource NavButtonStyle}"
-                BackgroundColor="#FF5722"
-                Command="{Binding NavigateToCatsPageCommand}"
-                Grid.Row="4" />
-    </Grid>
+       <Button Text="Go to Cats Page"
+               Style="{StaticResource NavButtonStyle}"
+               BackgroundColor="#FF5722"
+               Command="{Binding NavigateToCatsPageCommand}"
+               Grid.Row="4" />
+   </Grid>
 </ContentPage>

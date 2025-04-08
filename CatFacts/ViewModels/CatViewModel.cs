@@ -64,18 +64,17 @@ namespace CatFacts.ViewModels
                 var newCat = await _catService.CreateCatAsync(name, breed, color, age);
 
                 Cats.Add(newCat);
-                
+
                 await Application.Current.MainPage.DisplayAlert("Success", "Cat created successfully!", "OK");
 
-                
                 await _navigationService.NavigateToAsync<CatListPage>();
             }
             catch (Exception ex)
             {
-                
                 await Application.Current.MainPage.DisplayAlert("Error", $"Could not create cat: {ex.Message}", "OK");
             }
         }
+
 
         [RelayCommand]
         private async Task NavigateToHomePage()

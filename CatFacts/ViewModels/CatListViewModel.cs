@@ -49,12 +49,12 @@ namespace CatFacts.ViewModels
                     }
                     Cats.Clear();
                 }
-                await LoadCatsAsync(); // Recarga la lista (debería estar vacía)
-                MessagingCenter.Send(this, "CatsDeleted"); // Notifica a la UI
+                await LoadCatsAsync(); // Reload the list (should be empty)
+                MessagingCenter.Send(this, "CatsDeleted"); // Notify the UI
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar todos los gatos: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete all cats: {ex.Message}", "OK");
             }
         }
 
@@ -65,14 +65,14 @@ namespace CatFacts.ViewModels
             {
                 if (cat != null)
                 {
-                    await _catService.DeleteCatAsync(cat); // Elimina el gato de la base de datos
-                    Cats.Remove(cat); // Elimina el gato de la lista
-                    MessagingCenter.Send(this, "CatDeleted"); // Notifica a la UI que un gato fue eliminado
+                    await _catService.DeleteCatAsync(cat); // Delete the cat from the database
+                    Cats.Remove(cat); // Remove the cat from the list
+                    MessagingCenter.Send(this, "CatDeleted"); // Notify the UI that a cat was deleted
                 }
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar el gato: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete the cat: {ex.Message}", "OK");
             }
         }
     }
