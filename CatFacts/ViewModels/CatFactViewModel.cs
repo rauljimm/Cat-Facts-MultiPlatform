@@ -59,6 +59,16 @@ namespace CatFacts.ViewModels
         private async Task DeleteCatFact(CatFact catFact)
         {
             if (catFact == null) return;
+
+            bool isConfirmed = await Application.Current.MainPage.DisplayAlert(
+                "Confirm Delete",
+                $"Are you sure you want to delete this cat fact?",
+                "Yes",
+                "No"
+            );
+
+            if (!isConfirmed) return;
+
             try
             {
                 await _databaseService.DeleteCatFactAsync(catFact);
@@ -66,27 +76,36 @@ namespace CatFacts.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar el CatFact: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete the cat fact: {ex.Message}", "OK");
             }
         }
 
         [RelayCommand]
         private async Task DeleteAllCatFact()
         {
+            bool isConfirmed = await Application.Current.MainPage.DisplayAlert(
+                "Confirm Delete All",
+                "Are you sure you want to delete all cat facts?",
+                "Yes",
+                "No"
+            );
+
+            if (!isConfirmed) return;
+
             try
             {
-                foreach (var fact in CatFacts.ToList()) 
+                foreach (var fact in CatFacts.ToList())
                 {
                     await _databaseService.DeleteCatFactAsync(fact);
                 }
                 CatFacts.Clear();
-                
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar los CatFacts: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete all cat facts: {ex.Message}", "OK");
             }
         }
+
 
         [RelayCommand]
         private async Task NavigateToHomePage()

@@ -38,41 +38,53 @@ namespace CatFacts.ViewModels
         }
 
         [RelayCommand]
-        public async Task DeleteAllCats()
-        {
-            try
-            {
-                if (Cats != null && Cats.Any())
-                {
-                    foreach (var cat in Cats.ToList()) // Usamos ToList() para evitar problemas al modificar la colección mientras iteramos
-                    {
-                        await _catService.DeleteCatAsync(cat);
-                    }
-                    Cats.Clear(); // Limpiamos la colección, la UI se actualizará automáticamente
-                    MessagingCenter.Send(this, "CatsDeleted"); // Notify the UI
-                }
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete all cats: {ex.Message}", "OK");
-            }
-        }
-
-        [RelayCommand]
         public async Task DeleteCat(Cat cat)
         {
+            if (cat == null) return;
+
+            bool isConfirmed = await Application.Current.MainPage.DisplayAlert(
+                "Confirm Delete",
+                $"Are you sure you want to delete the cat \"{cat.Name}\"?",
+                "Yes",
+                "No"
+            );
+
+            if (!isConfirmed) return;
+
             try
             {
-                if (cat != null)
-                {
-                    await _catService.DeleteCatAsync(cat); // Elimina el gato de la base de datos
-                    Cats.Remove(cat); // Elimina el gato de la colección, la UI se actualizará automáticamente
-                    MessagingCenter.Send(this, "CatDeleted"); // Notify the UI that a cat was deleted
-                }
+                await _catService.DeleteCatAsync(cat);
+                Cats.Remove(cat);
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete the cat: {ex.Message}", "OK");
+            }
+        }
+
+        [RelayCommand]
+        public async Task DeleteAllCats()
+        {
+            bool isConfirmed = await Application.Current.MainPage.DisplayAlert(
+                "Confirm Delete All",
+                "Are you sure you want to delete all cats?",
+                "Yes",
+                "No"
+            );
+
+            if (!isConfirmed) return;
+
+            try
+            {
+                foreach (var cat in Cats.ToList())
+                {
+                    await _catService.DeleteCatAsync(cat);
+                }
+                Cats.Clear();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete all cats: {ex.Message}", "OK");
             }
         }
     }

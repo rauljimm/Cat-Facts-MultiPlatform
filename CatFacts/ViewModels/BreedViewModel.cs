@@ -62,9 +62,19 @@ namespace CatFacts.ViewModels
         }
 
         [RelayCommand]
-        private async Task DeleteBreed(Breed breed)
+        public async Task DeleteBreed(Breed breed)
         {
             if (breed == null) return;
+
+            bool isConfirmed = await Application.Current.MainPage.DisplayAlert(
+                "Confirm Delete",
+                $"Are you sure you want to delete the breed \"{breed.BreedName}\"?",
+                "Yes",
+                "No"
+            );
+
+            if (!isConfirmed) return;
+
             try
             {
                 await _databaseService.DeleteBreedAsync(breed);
@@ -72,16 +82,25 @@ namespace CatFacts.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar la raza: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete the breed: {ex.Message}", "OK");
             }
         }
 
         [RelayCommand]
-        private async Task DeleteAllBreeds()
+        public async Task DeleteAllBreeds()
         {
+            bool isConfirmed = await Application.Current.MainPage.DisplayAlert(
+                "Confirm Delete All",
+                "Are you sure you want to delete all breeds?",
+                "Yes",
+                "No"
+            );
+
+            if (!isConfirmed) return;
+
             try
             {
-                foreach (var breed in Breeds.ToList()) 
+                foreach (var breed in Breeds.ToList())
                 {
                     await _databaseService.DeleteBreedAsync(breed);
                 }
@@ -89,9 +108,10 @@ namespace CatFacts.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo eliminar todas las razas: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", $"Could not delete all breeds: {ex.Message}", "OK");
             }
         }
+
 
         [RelayCommand]
         private async Task NavigateToHomePage()

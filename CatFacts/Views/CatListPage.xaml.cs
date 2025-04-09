@@ -51,7 +51,7 @@ namespace CatFacts.Views
             }
 
             await ((CatListViewModel)BindingContext).LoadCatsAsync();
-            RefreshCatGrid(); // Refresca el Grid al aparecer la página
+            RefreshCatGrid();
         }
 
         private void RefreshCatGrid()
