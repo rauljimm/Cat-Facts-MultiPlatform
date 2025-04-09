@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using CatFacts.Models;
+using CatFacts.Responses;
 
 namespace CatFacts.Services
 {
@@ -26,9 +27,4 @@ namespace CatFacts.Services
         }
     }
 
-    public class CatFactApiResponse
-    {
-        public string fact { get; set; }
-        public int length { get; set; }
-    }
 }

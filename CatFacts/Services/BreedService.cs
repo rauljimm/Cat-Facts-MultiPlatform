@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using CatFacts.DTOs;
 using CatFacts.Models;
 
 namespace CatFacts.Services
@@ -25,17 +26,4 @@ namespace CatFacts.Services
         }
     }
 
-    public class BreedApiResponse
-    {
-        public List<BreedApiData> data { get; set; }
-    }
-
-    public class BreedApiData
-    {
-        public string breed { get; set; }
-        public string country { get; set; }
-        public string origin { get; set; }
-        public string coat { get; set; }
-        public string pattern { get; set; }
-    }
 }
