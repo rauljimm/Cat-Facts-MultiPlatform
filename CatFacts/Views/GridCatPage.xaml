@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:CatFacts.ViewModels"
+             x:Class="CatFacts.Views.GridCatPage"
+             Title="Cat Grid"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="catbackground.jpg">
+    <VerticalStackLayout Spacing="10" Padding="10">
+        <!-- Encabezado opcional -->
+        <Label Text="Cat Grid" 
+               FontSize="Title" 
+               HorizontalOptions="Center" 
+               TextColor="White" 
+               FontAttributes="Bold" />
+
+        <Button Grid.Row="2"
+                Text="Home"
+                Style="{StaticResource ButtonStyle}"
+                BackgroundColor="#03DAC6"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"
+                TextColor="Black"
+                FontAttributes="Bold"
+                Command="{Binding NavigateToHomePageCommand}" />
+
+        <!-- CollectionView para mostrar los gatos en una tabla -->
+        <CollectionView ItemsSource="{Binding Cats}">
+            <CollectionView.Header>
+                <!-- Encabezados de la tabla -->
+                <Grid Padding="5" BackgroundColor="#4A4A4A">
+                    <!-- Gris oscuro para contraste -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Name" Grid.Column="0" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" />
+                    <Label Text="Breed" Grid.Column="1" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" />
+                    <Label Text="Color" Grid.Column="2" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" />
+                    <Label Text="Age" Grid.Column="3" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" />
+                    <Label Text="Action" Grid.Column="4" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Filas de datos -->
+                    <Grid Padding="5" BackgroundColor="#FFFFFFCC">
+                        <!-- Blanco semitransparente para contraste -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Name}" Grid.Column="0" VerticalOptions="Center" TextColor="Black" />
+                        <Label Text="{Binding Breed}" Grid.Column="1" VerticalOptions="Center" TextColor="Black" />
+                        <Label Text="{Binding Color}" Grid.Column="2" VerticalOptions="Center" TextColor="Black" />
+                        <Label Text="{Binding Age}" Grid.Column="3" VerticalOptions="Center" TextColor="Black" />
+                        <Button Text="Delete" 
+                                Grid.Column="4" 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CatListViewModel}}, Path=DeleteCatCommand}"
+                                CommandParameter="{Binding .}"
+                                BackgroundColor="#FF4444"
+                                TextColor="White" 
+                                FontAttributes="Bold" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Botón para eliminar todos los gatos -->
+        <Button Text="Delete All Cats" 
+                Command="{Binding DeleteAllCatsCommand}" 
+                HorizontalOptions="Center" 
+                BackgroundColor="#8B0000"
+                TextColor="White" 
+                FontAttributes="Bold" />
+    </VerticalStackLayout>
+</ContentPage>

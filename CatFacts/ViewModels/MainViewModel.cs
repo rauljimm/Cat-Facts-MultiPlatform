@@ -12,35 +12,41 @@ namespace CatFacts.ViewModels
         public MainViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            Console.WriteLine("MainViewModel inicializado.");
+            
         }
 
         [RelayCommand]
         private async Task NavigateToBreeds()
         {
-            Console.WriteLine("NavigateToBreedsCommand ejecutado.");
+            
             await _navigationService.NavigateToAsync<BreedPage>();
         }
 
         [RelayCommand]
         private async Task NavigateToCatFacts()
         {
-            Console.WriteLine("NavigateToCatFactsCommand ejecutado.");
+            
             await _navigationService.NavigateToAsync<CatFactPage>();
         }
 
         [RelayCommand]
         private async Task NavigateToCreateCatPage()
         {
-            Console.WriteLine("NavigateToCreateCatPage ejecutado desde MainViewModel.");
+            
             await _navigationService.NavigateToAsync<CreateCatPage>();
         }
 
         [RelayCommand]
         private async Task NavigateToCatsPage()
         {
-            Console.WriteLine("NavigateToCreateCatPage ejecutado desde MainViewModel.");
+            
             await _navigationService.NavigateToAsync<CatListPage>();
+        }
+
+        [RelayCommand]
+        private async Task NavigateToGridCatPage()
+        {
+            await _navigationService.NavigateToAsync<GridCatPage>();
         }
 
     }

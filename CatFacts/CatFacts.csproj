@@ -78,6 +78,9 @@
 	  <Compile Update="Views\BreedPage.xaml.cs">
 	    <DependentUpon>BreedPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\GridCatPage.xaml.cs">
+	    <DependentUpon>GridCatPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -91,6 +94,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CreateCatPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\GridCatPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Popups\EditBreedPopup.xaml">

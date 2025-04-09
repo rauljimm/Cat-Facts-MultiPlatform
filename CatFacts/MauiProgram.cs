@@ -43,6 +43,7 @@ public static class MauiProgram
         builder.Services.AddTransient<CreateCatPage>();
         builder.Services.AddTransient<CatListPage>();
         builder.Services.AddSingleton<EditCatPopup>();
+        builder.Services.AddTransient<GridCatPage>();
         builder.Services.AddSingleton<AppShell>();
 
         // Hacer IServiceProvider disponible
