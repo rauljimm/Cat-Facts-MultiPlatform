@@ -68,7 +68,7 @@
         <Button Text="Delete All Cats" 
                 Command="{Binding DeleteAllCatsCommand}" 
                 HorizontalOptions="Center" 
-                BackgroundColor="#8B0000"
+                BackgroundColor="#FF4444"
                 TextColor="White" 
                 FontAttributes="Bold" />
     </VerticalStackLayout>
