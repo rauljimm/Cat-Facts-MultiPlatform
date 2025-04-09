@@ -7,7 +7,6 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundImageSource="catbackground.jpg">
     <VerticalStackLayout Spacing="10" Padding="10">
-        <!-- Encabezado opcional -->
         <Label Text="Cat Grid" 
                FontSize="Title" 
                HorizontalOptions="Center" 
@@ -16,7 +15,6 @@
 
         <Button Grid.Row="2"
                 Text="Home"
-                Style="{StaticResource ButtonStyle}"
                 BackgroundColor="#03DAC6"
                 WidthRequest="200"
                 HorizontalOptions="Center"
@@ -25,12 +23,9 @@
                 FontAttributes="Bold"
                 Command="{Binding NavigateToHomePageCommand}" />
 
-        <!-- CollectionView para mostrar los gatos en una tabla -->
         <CollectionView ItemsSource="{Binding Cats}">
             <CollectionView.Header>
-                <!-- Encabezados de la tabla -->
                 <Grid Padding="5" BackgroundColor="#4A4A4A">
-                    <!-- Gris oscuro para contraste -->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -47,9 +42,7 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <!-- Filas de datos -->
                     <Grid Padding="5" BackgroundColor="#FFFFFFCC">
-                        <!-- Blanco semitransparente para contraste -->
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -63,8 +56,7 @@
                         <Label Text="{Binding Age}" Grid.Column="3" VerticalOptions="Center" TextColor="Black" />
                         <Button Text="Delete" 
                                 Grid.Column="4" 
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CatListViewModel}}, Path=DeleteCatCommand}"
-                                CommandParameter="{Binding .}"
+                                Clicked="OnDeleteButtonClicked" 
                                 BackgroundColor="#FF4444"
                                 TextColor="White" 
                                 FontAttributes="Bold" />
@@ -73,7 +65,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Botón para eliminar todos los gatos -->
         <Button Text="Delete All Cats" 
                 Command="{Binding DeleteAllCatsCommand}" 
                 HorizontalOptions="Center" 

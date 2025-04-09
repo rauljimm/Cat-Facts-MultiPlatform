@@ -4,7 +4,7 @@ using CatFacts.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel; // Necesario para ObservableCollection
 using System.Threading.Tasks;
 
 namespace CatFacts.ViewModels
@@ -15,18 +15,19 @@ namespace CatFacts.ViewModels
         private readonly INavigationService _navigationService;
 
         [ObservableProperty]
-        private List<Cat> cats;
+        private ObservableCollection<Cat> cats; // Cambiado de List<Cat> a ObservableCollection<Cat>
 
         public CatListViewModel(ICatService catService, INavigationService navigationService)
         {
             _catService = catService;
             _navigationService = navigationService;
+            Cats = new ObservableCollection<Cat>(); // Inicializamos la colección
         }
 
         public async Task LoadCatsAsync()
         {
             var catsFromDatabase = await _catService.GetCatsAsync();
-            Cats = catsFromDatabase; // Asigna la lista cargada
+            Cats = new ObservableCollection<Cat>(catsFromDatabase); // Asignamos una nueva colección
         }
 
         [RelayCommand]
@@ -43,14 +44,13 @@ namespace CatFacts.ViewModels
             {
                 if (Cats != null && Cats.Any())
                 {
-                    foreach (var cat in Cats.ToList())
+                    foreach (var cat in Cats.ToList()) // Usamos ToList() para evitar problemas al modificar la colección mientras iteramos
                     {
                         await _catService.DeleteCatAsync(cat);
                     }
-                    Cats.Clear();
+                    Cats.Clear(); // Limpiamos la colección, la UI se actualizará automáticamente
+                    MessagingCenter.Send(this, "CatsDeleted"); // Notify the UI
                 }
-                await LoadCatsAsync(); // Reload the list (should be empty)
-                MessagingCenter.Send(this, "CatsDeleted"); // Notify the UI
             }
             catch (Exception ex)
             {
@@ -65,8 +65,8 @@ namespace CatFacts.ViewModels
             {
                 if (cat != null)
                 {
-                    await _catService.DeleteCatAsync(cat); // Delete the cat from the database
-                    Cats.Remove(cat); // Remove the cat from the list
+                    await _catService.DeleteCatAsync(cat); // Elimina el gato de la base de datos
+                    Cats.Remove(cat); // Elimina el gato de la colección, la UI se actualizará automáticamente
                     MessagingCenter.Send(this, "CatDeleted"); // Notify the UI that a cat was deleted
                 }
             }
