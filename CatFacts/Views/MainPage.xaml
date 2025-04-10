@@ -62,9 +62,10 @@
        </Grid.RowDefinitions>
 
        <!-- Título -->
-       <Label Grid.Row="0"
+        <Label Text="Welcome to CatFacts"
+              Grid.Row="0"
               Style="{StaticResource TitleStyle}"
-              Text="Welcome to CatFacts" />
+               />
 
        <!-- Botones de navegación -->
        <Button Text="Go to Breeds"
