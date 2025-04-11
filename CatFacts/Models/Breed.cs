@@ -11,9 +11,6 @@ namespace CatFacts.Models
         public string Origin { get; set; }
         public string Coat { get; set; }
         public string Pattern { get; set; }
-
-        public Breed() { }
-
         public Breed(string breedName, string country, string origin, string coat, string pattern)
         {
             BreedName = breedName;

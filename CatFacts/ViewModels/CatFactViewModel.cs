@@ -130,7 +130,7 @@ namespace CatFacts.ViewModels
                     var index = CatFacts.IndexOf(catFact);
                     if (index != -1)
                     {
-                        CatFacts[index] = updatedCatFact; // Actualiza en la colección observable
+                        CatFacts[index] = updatedCatFact;
                     }
                 }
                 catch (Exception ex)

@@ -4,7 +4,7 @@ using CatFacts.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
-using System.Collections.ObjectModel; // Necesario para ObservableCollection
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace CatFacts.ViewModels
@@ -15,19 +15,19 @@ namespace CatFacts.ViewModels
         private readonly INavigationService _navigationService;
 
         [ObservableProperty]
-        private ObservableCollection<Cat> cats; // Cambiado de List<Cat> a ObservableCollection<Cat>
+        private ObservableCollection<Cat> cats; 
 
         public CatListViewModel(ICatService catService, INavigationService navigationService)
         {
             _catService = catService;
             _navigationService = navigationService;
-            Cats = new ObservableCollection<Cat>(); // Inicializamos la colección
+            Cats = new ObservableCollection<Cat>();
         }
 
         public async Task LoadCatsAsync()
         {
             var catsFromDatabase = await _catService.GetCatsAsync();
-            Cats = new ObservableCollection<Cat>(catsFromDatabase); // Asignamos una nueva colección
+            Cats = new ObservableCollection<Cat>(catsFromDatabase); 
         }
 
         [RelayCommand]

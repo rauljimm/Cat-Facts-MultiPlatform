@@ -9,8 +9,6 @@ namespace CatFacts.Models
         public string Fact { get; set; }
         public int Length { get; set; }
 
-        public CatFact() { }
-
         public CatFact(string fact, int length)
         {
             Fact = fact;
